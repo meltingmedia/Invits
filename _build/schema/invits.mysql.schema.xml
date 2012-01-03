@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="invits" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="invits">
+    <object class="Invit" table="invits" extends="xPDOSimpleObject">
+        <field key="sender_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+        <field key="guest_email" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+        <field key="guest_name" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+        <field key="guest_registered" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0" />
+        <field key="hash" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+        <field key="extended" dbtype="text" phptype="json" null="true" />
+        <field key="date" dbtype="int" precision="11" phptype="integer" null="false" default="0" />
+    </object>
+
+    <!-- notes for a possible future update -->
+    <!--<object class="InvitRequest" table="invits_requests" extends="xPDOObject">
+        <field key="guest_email" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+        <field key="guest_name" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+        <field key="guest_registered" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0" />
+        <field key="hash" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+        <field key="extended" dbtype="text" phptype="json" null="true" />
+        <field key="date" dbtype="int" precision="11" phptype="integer" null="false" default="0" />
+    </object>-->
+
+    <!--<object class="InvitsCredit" table="invits_credits" extends="xPDOObject">
+        <field key="user_id" />
+        <field key="credits" />
+    </object>-->
+
+    <object class="InvitsRelationship" table="invits_relationships" extends="xPDOObject">
+        <field key="sender_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" index="pk" />
+        <field key="invited_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" index="pk" />
+
+        <index alias="PRIMARY" name="PRIMARY" primary="true" type="BTREE">
+            <column key="sender_id" length="" collation="A" null="false" />
+            <column key="invited_id" length="" collation="A" null="false" />
+        </index>
+
+        <aggregate alias="Sender" class="modUser" key="id" local="sender_id" foreign="id" cardinality="one" owner="foreign" />
+        <aggregate alias="Invited" class="modUser" key="id" local="invited_id" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+</model>

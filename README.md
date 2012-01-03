@@ -9,7 +9,7 @@ Todo
 
 ## Information
 
-Invits component works with Shaun McCormic's Login component.
+Invits component works with Shaun McCormick's Login component.
 
 ## Support
 
