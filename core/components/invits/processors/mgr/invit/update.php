@@ -39,6 +39,12 @@ if ($invit->save() == false) {
     return $modx->error->failure($modx->lexicon('invits.invit_err_save'));
 }
 
+$modx->invokeEvent('OnInvitSave', array(
+    'mode' => modSystemEvent::MODE_UPD,
+    'id' => $invit->get('id'),
+    'invit' => $invit,
+));
+
 // output
 $invitArray = $invit->toArray('', true);
 return $modx->error->success('', $invitArray);

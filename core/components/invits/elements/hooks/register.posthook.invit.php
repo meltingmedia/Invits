@@ -6,25 +6,21 @@
  * @var $Invits Invits
  * @var $hook LoginHooks
  * @var $scriptProperties array
- *
  * @package invits
  */
 $Invits = $modx->getService('invits', 'Invits', $modx->getOption('invits.core_path', null, $modx->getOption('core_path').'components/invits/').'model/invits/', $scriptProperties);
 if (!($Invits instanceof Invits)) return '';
 
-//$modx->log(modX::LOG_LEVEL_ERROR, 'in invit posthook');
 $activation = $scriptProperties['activation'];
 /** @var $user modUser */
 $user = $modx->getObject('modUser', array('username' => $hook->getValue($scriptProperties['usernameField'])));
 
 if ($activation) {
-    // Registration requires an activation, at this stage modUser is created but not activated
-    // the invitation is not completely fulfilled yet
-    $modx->log(modX::LOG_LEVEL_ERROR, 'activation required');
+    /* Registration requires an activation, at this stage modUser is created but not activated
+     the invitation is not completely fulfilled yet */
     return true;
 }
 
-$modx->log(modX::LOG_LEVEL_ERROR, 'activation not required, lets do what we have to');
 /** @var $invit Invit */
 $invit = $modx->getObject('Invit', array(
     'hash' => $scriptProperties['invitHash'],
@@ -43,4 +39,5 @@ $modx->invokeEvent('OnInvitedRegister', array(
     'sender_id' => $invit->get('sender_id'),
     'user_id' => $user->get('id'),
 ));
+
 return true;

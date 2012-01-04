@@ -37,4 +37,11 @@ $events['OnInvitedRegister']->fromArray(array (
   'groupname' => 'Invits',
 ), '', true, true);
 
+$events['OnInvitSave'] = $modx->newObject('modEvent');
+$events['OnInvitSave']->fromArray(array (
+  'name' => 'OnInvitSave',
+  'service' => 1,
+  'groupname' => 'Invits',
+), '', true, true);
+
 return $events;

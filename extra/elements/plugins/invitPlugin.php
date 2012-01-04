@@ -10,7 +10,10 @@
 if ($modx->context->get('key') == 'mgr') return;
 switch ($modx->event->name) {
     case 'OnInvitedRegister':
-        $modx->log(modX::LOG_LEVEL_ERROR, 'OnInvitUsed triggered!');
+        $modx->log(modX::LOG_LEVEL_ERROR, 'OnInvitedRegister triggered!');
+        break;
+    case 'OnInvitSave':
+        $modx->log(modX::LOG_LEVEL_ERROR, 'OnInvitedRegister triggered!');
         break;
 }
 

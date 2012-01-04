@@ -32,8 +32,15 @@ $start = $modx->getOption('start', $_REQUEST, 0);
 $limit = $modx->getOption('limit', $_REQUEST, 20);
 $sort = $modx->getOption('sort', $_REQUEST, 'date');
 $dir = $modx->getOption('dir', $_REQUEST, 'DESC');
+$guest_registered = $modx->getOption('guest_registered', $_REQUEST, '');
 
 $c = $modx->newQuery('Invit');
+// @todo join modUser & modUserProfile to allow searching invitations issued from a given user/username/email
+if ($guest_registered != '') {
+    $c->where(array(
+        'guest_registered' => $guest_registered,
+    ));
+}
 $count = $modx->getCount('Invit', $c);
 
 $c->sortby($sort, $dir);

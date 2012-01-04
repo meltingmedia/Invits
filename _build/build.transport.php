@@ -74,6 +74,21 @@ $builder->createPackage(PKG_NAME_LOWER, PKG_VERSION, PKG_RELEASE);
 $builder->registerNamespace(PKG_NAME_LOWER, false, true, '{core_path}components/'.PKG_NAME_LOWER.'/');
 $modx->log(modX::LOG_LEVEL_INFO, 'Created Transport Package and Namespace.');
 
+// load system events
+$events = include $sources['data'].'transport.events.php';
+if (empty($events)) $modx->log(modX::LOG_LEVEL_ERROR, 'Could not package in events.');
+$attributes = array (
+    xPDOTransport::PRESERVE_KEYS => false,
+    xPDOTransport::UPDATE_OBJECT => true,
+    xPDOTransport::UNIQUE_KEY => array ('name'),
+);
+foreach ($events as $event) {
+    $vehicle = $builder->createVehicle($event, $attributes);
+    $builder->putVehicle($vehicle);
+}
+$modx->log(xPDO::LOG_LEVEL_INFO, 'Packaged in '.count($events).' default events.'); flush();
+unset ($events, $event, $attributes);
+
 // create category
 /** @var $category modCategory */
 $category = $modx->newObject('modCategory');
@@ -191,6 +206,7 @@ unset($vehicle, $menu);
 $builder->setPackageAttributes(array(
     'license' => file_get_contents($sources['docs'] . 'license.txt'),
     'readme' => file_get_contents($sources['docs'] . 'readme.txt'),
+    'changelog' => file_get_contents($sources['docs'] . 'changelog.txt'),
     //'setup-options' => array(
         //'source' => $sources['build'].'setup.options.php',
     //),

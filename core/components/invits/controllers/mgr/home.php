@@ -28,6 +28,7 @@
  * @package invits
  * @subpackage controllers
  */
+$modx->regClientStartupScript($Invits->config['jsUrl'].'mgr/widgets/core/invits.combos.js');
 $modx->regClientStartupScript($Invits->config['jsUrl'].'mgr/widgets/home/invits.grid.js');
 $modx->regClientStartupScript($Invits->config['jsUrl'].'mgr/widgets/home/home.panel.js');
 $modx->regClientStartupScript($Invits->config['jsUrl'].'mgr/sections/home.js');

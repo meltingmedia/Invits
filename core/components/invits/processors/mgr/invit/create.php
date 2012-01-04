@@ -51,10 +51,10 @@ if ($invit->save() == false) {
     return $modx->error->failure($modx->lexicon('invits.invit_err_save'));
 }
 
-/*$modx->invokeEvent('OnInvitSave', array(
+$modx->invokeEvent('OnInvitSave', array(
     'mode' => modSystemEvent::MODE_NEW,
     'id' => $invit->get('id'),
     'invit' => $invit,
-));*/
+));
 
 return $modx->error->success('', $invit);
