@@ -20,7 +20,6 @@ $invitOnly = $modx->getOption('invitOnly', $scriptProperties, true);
 $formTpl = $modx->getOption('formTpl', $scriptProperties, 'registrationform');
 // Register default params
 $emailField = $modx->getOption('emailField', $scriptProperties, 'email');
-//$activation = $modx->getOption('activation', $scriptProperties, true);
 
 $invitHash = $_REQUEST['referer'];
 if (!$invitHash && $invitOnly) {

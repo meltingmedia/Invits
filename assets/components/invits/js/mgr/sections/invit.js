@@ -48,5 +48,10 @@ Ext.extend(Invits.page.Invit, MODx.Component, {
         });
         return btns;
     }
+
+    // Redirects to the invitation creation form
+    ,createInvit: function(btn, e) {
+        location.href = '?a=' + Invits.action + '&action=invit';
+    }
 });
 Ext.reg('invits-page-invit', Invits.page.Invit);

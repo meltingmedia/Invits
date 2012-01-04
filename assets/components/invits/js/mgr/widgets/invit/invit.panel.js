@@ -7,7 +7,6 @@
 Invits.panel.Invit = function(config) {
     config = config || {record:{}};
     config.record = config.record || {};
-    console.log(config.record);
 
     var leftColumn = [];
     leftColumn.push({
@@ -79,6 +78,7 @@ Invits.panel.Invit = function(config) {
                 ,labelWidth: 0
                 ,border: false
                 ,style: 'margin-right: 0'
+                ,hidden: !(config.record.id)
                 ,defaults: {
                     msgTarget: 'under'
                     ,anchor: '100%'

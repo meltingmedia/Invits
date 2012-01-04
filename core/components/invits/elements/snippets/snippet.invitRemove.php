@@ -1,6 +1,6 @@
 <?php
 /**
- * Updates an invitation once invited user is registered (& activated)
+ * Updates an invitation once the invited user is registered (& activated)
  *
  * @var $modx modX
  * @var $Invits Invits
@@ -9,8 +9,8 @@
 $Invits = $modx->getService('invits', 'Invits', $modx->getOption('invits.core_path', null, $modx->getOption('core_path').'components/invits/').'model/invits/', $scriptProperties);
 if (!($Invits instanceof Invits)) return '';
 
-$invitHash = $_GET['referer'];
-$userId = $_GET['ru'];
+$invitHash = $_REQUEST['referer'];
+$userId = $_REQUEST['ru'];
 $invit = false;
 
 if ($invitHash) {
@@ -45,7 +45,7 @@ if ($invit) {
         'user_id' => $userId,
     ));
 
-    $modx->sendRedirect($modx->makeUrl($_GET['landing']));
+    $modx->sendRedirect($modx->makeUrl($_REQUEST['landing']));
 }
 
 return 'you should not see this!';

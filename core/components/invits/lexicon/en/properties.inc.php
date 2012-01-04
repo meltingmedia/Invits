@@ -20,30 +20,13 @@
  * @package invits
  */
 /**
- * Update an Item
- *
- * @var $modx modX
+ * Properties English Lexicon Entries for Invits
  *
  * @package invits
- * @subpackage processors
+ * @subpackage lexicon
  */
-
-if (empty($scriptProperties['id'])) return $modx->error->failure($modx->lexicon('invits.invit_err_ns'));
-/** @var $invit Invit */
-$invit = $modx->getObject('Invit', $scriptProperties['id']);
-if (!$invit) return $modx->error->failure($modx->lexicon('invits.invit_err_nf'));
-
-$invit->fromArray($scriptProperties);
-
-if ($invit->save() == false) {
-    return $modx->error->failure($modx->lexicon('invits.invit_err_save'));
-}
-$modx->invokeEvent('OnInvitSave', array(
-    'mode' => modSystemEvent::MODE_UPD,
-    'id' => $invit->get('id'),
-    'invit' => $invit,
-));
-
-// output
-$invitArray = $invit->toArray('', true);
-return $modx->error->success('', $invitArray);
+$_lang['prop_invitsconfirmregister.finallanding_desc'] = 'The resource ID where the user should be redirected to upon successful activation/confirmation.';
+$_lang['prop_invitsconfirmregister.invitremove_desc'] = 'The resource ID where invitRemove snippet is called.';
+$_lang['prop_invitsregister.invitonly_desc'] = 'Whether to allow or not registration without invitation.';
+$_lang['prop_invitsregister.formtpl_desc'] = 'The chunk containing the registration form.';
+//$_lang['prop_invits._desc'] = '';

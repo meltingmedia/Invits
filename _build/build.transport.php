@@ -37,7 +37,7 @@ set_time_limit(0);
 define('PKG_NAME', 'Invits');
 define('PKG_NAME_LOWER', strtolower(PKG_NAME));
 define('PKG_VERSION', '1.0.0');
-define('PKG_RELEASE', 'rc1');
+define('PKG_RELEASE', 'dev');
 
 // define sources
 $root = dirname(dirname(__FILE__)).'/';
@@ -78,9 +78,9 @@ $modx->log(modX::LOG_LEVEL_INFO, 'Created Transport Package and Namespace.');
 $events = include $sources['data'].'transport.events.php';
 if (empty($events)) $modx->log(modX::LOG_LEVEL_ERROR, 'Could not package in events.');
 $attributes = array (
-    xPDOTransport::PRESERVE_KEYS => false,
+    xPDOTransport::PRESERVE_KEYS => true,
     xPDOTransport::UPDATE_OBJECT => true,
-    xPDOTransport::UNIQUE_KEY => array ('name'),
+    xPDOTransport::UNIQUE_KEY => 'name',
 );
 foreach ($events as $event) {
     $vehicle = $builder->createVehicle($event, $attributes);

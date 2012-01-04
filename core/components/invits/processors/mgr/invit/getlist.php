@@ -51,6 +51,7 @@ $list = array();
 /** @var $invit Invit */
 foreach ($invits as $invit) {
     $invitArray = $invit->toArray();
+    $invitArray['guest_registered'] = $invitArray['guest_registered'] ? $modx->lexicon('yes') : $modx->lexicon('no');
     $list[] = $invitArray;
 }
 return $this->outputArray($list, $count);

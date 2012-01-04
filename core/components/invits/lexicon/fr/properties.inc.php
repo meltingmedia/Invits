@@ -20,30 +20,12 @@
  * @package invits
  */
 /**
- * Update an Item
- *
- * @var $modx modX
+ * Properties French Lexicon Entries for Invits
  *
  * @package invits
- * @subpackage processors
+ * @subpackage lexicon
  */
-
-if (empty($scriptProperties['id'])) return $modx->error->failure($modx->lexicon('invits.invit_err_ns'));
-/** @var $invit Invit */
-$invit = $modx->getObject('Invit', $scriptProperties['id']);
-if (!$invit) return $modx->error->failure($modx->lexicon('invits.invit_err_nf'));
-
-$invit->fromArray($scriptProperties);
-
-if ($invit->save() == false) {
-    return $modx->error->failure($modx->lexicon('invits.invit_err_save'));
-}
-$modx->invokeEvent('OnInvitSave', array(
-    'mode' => modSystemEvent::MODE_UPD,
-    'id' => $invit->get('id'),
-    'invit' => $invit,
-));
-
-// output
-$invitArray = $invit->toArray('', true);
-return $modx->error->success('', $invitArray);
+$_lang['prop_invitsconfirmregister.finallanding_desc'] = 'L\'ID de la ressource vers laquelle l\'utilisateur doit être redirigé après une création et activation de compte fructueuse.';
+$_lang['prop_invitsconfirmregister.invitremove_desc'] = 'L\'ID de la ressource où le snippet invitRemove est appelé.';
+$_lang['prop_invitsregister.invitonly_desc'] = 'Défini si l\'inscription sans invitation est autorisée.';
+$_lang['prop_invitsregister.formtpl_desc'] = 'Le chunk contenant le formulaire d\'inscription.';

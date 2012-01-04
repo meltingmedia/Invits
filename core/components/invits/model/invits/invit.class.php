@@ -14,10 +14,8 @@ class Invit extends xPDOSimpleObject {
     }
 
     public function createCode() {
-        //$user_id = $this->xpdo->invits->modx->user->get('id');
         $date = time();
         $code = md5($this->get('sender_id').$date);
-        $this->xpdo->log(modX::LOG_LEVEL_ERROR, $code);
         return $code;
     }
 }

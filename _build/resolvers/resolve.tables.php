@@ -30,6 +30,7 @@
 if ($object->xpdo) {
     switch ($options[xPDOTransport::PACKAGE_ACTION]) {
         case xPDOTransport::ACTION_INSTALL:
+        case xPDOTransport::ACTION_UPGRADE:
             $modx =& $object->xpdo;
             $modelPath = $modx->getOption('invits.core_path', null, $modx->getOption('core_path').'components/invits/').'model/';
             $modx->addPackage('invits', $modelPath);
@@ -37,9 +38,8 @@ if ($object->xpdo) {
             $manager = $modx->getManager();
 
             $manager->createObjectContainer('Invit');
+            $manager->createObjectContainer('InvitsRelationship');
 
-            break;
-        case xPDOTransport::ACTION_UPGRADE:
             break;
     }
 }
