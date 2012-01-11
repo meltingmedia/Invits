@@ -8,15 +8,18 @@
 <hr />
 [[!invitsRegister?
     &formTpl=`registrationForm`
+    &invitDisableActivation=`1`
 
     &_preHooks=`reg.preInvit`
     &postHooks=`reg.postInvit`
 
-    &_activation=`0`
+    &_activation=`[[!invitSwitchActivation]]`
     &activationResourceId=`32`
     &activationEmailSubject=`coucou`
 
     &submittedResourceId=`35`
 ]]
+<hr />
+[[!invitSwitchActivation]]
 </body>
 </html>

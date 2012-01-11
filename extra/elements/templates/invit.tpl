@@ -11,16 +11,22 @@
     &_customValidators=`invitsValidator`
     &_validate=`invit-1:invitsValidator,invit-2:invitsValidator,test:invitsValidator`
     &validate=`invit-email:required:email`
+
+    &invitEmailTpl=`invit-email-chunk`
+    &invitEmailSubject=`Come on sweety!`
+    &invitEmailFrom=`moi@lola.com`;
+    &invitEmailFromName=`[[+modx.user.id:userinfo=`username`]]`
+    &invitEmailHtml=`0`
 ]]
     <form action="[[~[[*id]]]]" method="post">
-        <input type="text" id="test" name="test" value="[[!+fi.test]]" />
+        <!--<input type="text" id="test" name="test" value="[[!+fi.test]]" />-->[[!+error]]
         <fieldset>
             <legend>Invitee #1</legend>
-            <label for="invit-email">Email [[!+fi.error.invit-email]]</label>
-            <input type="text" id="invit-email" name="invit-email" value="[[!+fi.invit-email]]" />
+            <label for="invit-email-1">Email [[!+fi.error.invit-email]]</label>
+            <input type="text" id="invit-email-1" name="invit-email" value="[[!+fi.invit-email]]" />
 
-            <label for="invit-name">Name [[!+fi.error.invit-mail]]</label>
-            <input type="text" id="invit-name" name="invit-name" value="[[!+fi.invit-name]]" />
+            <label for="invit-name-1">Name [[!+fi.error.invit-mail]]</label>
+            <input type="text" id="invit-name-1" name="invit-name" value="[[!+fi.invit-name]]" />
         </fieldset>
 
         <div>

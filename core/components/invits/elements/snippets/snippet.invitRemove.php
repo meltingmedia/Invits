@@ -12,8 +12,11 @@ if (!($Invits instanceof Invits)) return '';
 $invitHash = $_REQUEST['referer'];
 $userId = $_REQUEST['ru'];
 $invit = false;
+$modx->log(modX::LOG_LEVEL_ERROR, 'remove invit snippet hash: '.$invitHash);
+$modx->log(modX::LOG_LEVEL_ERROR, 'remove invit snippet userid: '.$userId);
 
 if ($invitHash) {
+    /** @var $invit Invit */
     $invit = $modx->getObject('Invit', array(
         'hash' => $invitHash,
         'guest_registered' => 0,
@@ -21,19 +24,12 @@ if ($invitHash) {
 }
 
 if ($invit) {
-    /**
-     * Update the Invit object
-     *
-     * @var $invit Invit
-     */
+    // Update the Invit object
     $invit->set('guest_registered', 1);
     $invit->save();
 
-    /**
-     * Creates the relationship
-     *
-     * @var $relationship InvitsRelationship
-     */
+    // Creates the relationship
+    /** @var $relationship InvitsRelationship */
     $relationship = $modx->newObject('InvitsRelationship');
     $relationship->set('sender_id', $invit->get('sender_id'));
     $relationship->set('invited_id', $userId);
@@ -46,6 +42,9 @@ if ($invit) {
     ));
 
     $modx->sendRedirect($modx->makeUrl($_REQUEST['landing']));
+} else {
+    $modx->log(modX::LOG_LEVEL_ERROR, 'no invit object in remove invit snippet');
 }
 
-return 'you should not see this!';
+$modx->sendRedirect($modx->makeUrl($modx->getOption('site_start')));
+return 'Uhoh! Something went wrong...';

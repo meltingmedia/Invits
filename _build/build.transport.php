@@ -36,8 +36,10 @@ set_time_limit(0);
 // define package
 define('PKG_NAME', 'Invits');
 define('PKG_NAME_LOWER', strtolower(PKG_NAME));
+/*define('PKG_VERSION', '1.0.0'. date('Ymd') . '-1');
+define('PKG_RELEASE', 'dev');*/
 define('PKG_VERSION', '1.0.0');
-define('PKG_RELEASE', 'dev');
+define('PKG_RELEASE', 'beta1');
 
 // define sources
 $root = dirname(dirname(__FILE__)).'/';

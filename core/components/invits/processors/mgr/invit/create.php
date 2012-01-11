@@ -27,24 +27,24 @@
  * @package invits
  * @subpackage processors
  */
-$email = $_POST['guest_email'] ? $_POST['guest_email'] : $scriptProperties['guest_email'];
 $alreadyExists = $modx->getObject('Invit', array(
-    'guest_email' => $email,
+    'guest_email' => $scriptProperties['guest_email'],
 ));
 $alreadyRegistered = $modx->getObject('modUserProfile', array(
-    'email' => $email,
+    'email' => $scriptProperties['guest_email'],
 ));
 if ($alreadyExists || $alreadyRegistered) {
     $modx->error->addField('guest_email', $modx->lexicon('invits.invit_err_ae'));
 }
 
 if ($modx->error->hasError()) {
+    //$modx->log(modX::LOG_LEVEL_ERROR, 'failure!: '.print_r($modx->error->failure(), 1));
     return $modx->error->failure();
 }
+
 /** @var $invit Invit */
 $invit = $modx->newObject('Invit');
-$invit->fromArray($_POST ? $_POST : $scriptProperties);
-//$invit->fromArray($scriptProperties);
+$invit->fromArray($scriptProperties);
 $invit->set('sender_id', $modx->user->get('id'));
 $invit->set('date', time());
 $invit->set('hash', $invit->createCode());

@@ -29,3 +29,9 @@ $_lang['prop_invitsconfirmregister.finallanding_desc'] = 'L\'ID de la ressource 
 $_lang['prop_invitsconfirmregister.invitremove_desc'] = 'L\'ID de la ressource où le snippet invitRemove est appelé.';
 $_lang['prop_invitsregister.invitonly_desc'] = 'Défini si l\'inscription sans invitation est autorisée.';
 $_lang['prop_invitsregister.formtpl_desc'] = 'Le chunk contenant le formulaire d\'inscription.';
+
+$_lang['prop_fi.postinvit.invitemailtpl_desc'] = 'Nom du chunk contenant le corps (contenu) de l\'email d\'invitation';
+$_lang['prop_fi.postinvit.invitemailsubject_desc'] = 'Sujet de l\'e-mail que les invités recevront';
+$_lang['prop_fi.postinvit.invitemailfrom_desc'] = 'Adresse e-mail utilisée pour envoyer les invitations';
+$_lang['prop_fi.postinvit.invitemailfromname_desc'] = 'Nom de l\'emetteur de l\'invitation';
+$_lang['prop_fi.postinvit.invitemailhtml_desc'] = 'Activer ou non l\'envoie de l\'e-mail en HTML';

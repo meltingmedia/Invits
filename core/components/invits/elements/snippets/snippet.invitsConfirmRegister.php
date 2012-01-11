@@ -16,7 +16,7 @@
 $Invits = $modx->getService('invits', 'Invits', $modx->getOption('invits.core_path', null, $modx->getOption('core_path').'components/invits/').'model/invits/', $scriptProperties);
 if (!($Invits instanceof Invits)) return '';
 
-if ($_REQUEST['invit']) {
+if ($_REQUEST['referer']) {
     $invitHash = $_REQUEST['referer'];
     $invit = false;
     /** @var $invit Invit */
@@ -32,7 +32,9 @@ if ($_REQUEST['invit']) {
     $user = $modx->getObject('modUser', array(
         'username' => $username,
     ));
-    if (!$invitHash || !$username || !$user || !$scriptProperties['finalLanding']) return;
+    if (!$invitHash || !$username || !$user || !$scriptProperties['finalLanding']) {
+        return;
+    }
 
     /**
      * $redirectParams Parameters array to be used in ConfirmRegister snippet
@@ -46,7 +48,7 @@ if ($_REQUEST['invit']) {
         'landing' => $scriptProperties['finalLanding'],
         'ru' => $user->get('id'),
     );
-    $redirectParams = array_merge($scriptProperties['redirectParams'], $redirectParams);
+    //$redirectParams = array_merge($scriptProperties['redirectParams'], $redirectParams);
     if ($invit) {
         $scriptProperties['redirectParams'] = json_encode($redirectParams);
         if (isset($scriptProperties['invitRemove'])) {

@@ -73,4 +73,15 @@ $properties = include $sources['build'].'properties/properties.invitsRegister.ph
 $snippets[3]->setProperties($properties);
 unset($properties);
 
+$snippets[4] = $modx->newObject('modSnippet');
+$snippets[4]->fromArray(array(
+    'id' => 4,
+    'name' => 'fi.postInvit',
+    'description' => 'A FormIt postHook to create invitations',
+    'snippet' => getSnippetContent($sources['source_core'].'/elements/hooks/formit.posthook.invit.php'),
+), '', true, true);
+$properties = include $sources['build'].'properties/properties.formit.posthook.invit.php';
+$snippets[4]->setProperties($properties);
+unset($properties);
+
 return $snippets;

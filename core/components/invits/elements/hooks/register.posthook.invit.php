@@ -11,20 +11,21 @@
 $Invits = $modx->getService('invits', 'Invits', $modx->getOption('invits.core_path', null, $modx->getOption('core_path').'components/invits/').'model/invits/', $scriptProperties);
 if (!($Invits instanceof Invits)) return '';
 
-$activation = $scriptProperties['activation'];
-/** @var $user modUser */
-$user = $modx->getObject('modUser', array('username' => $hook->getValue($scriptProperties['usernameField'])));
-
-if ($activation) {
+if ($scriptProperties['activation']) {
     /* Registration requires an activation, at this stage modUser is created but not activated
      the invitation is not completely fulfilled yet */
     return true;
 }
 
+/** @var $user modUser */
+$user = $modx->getObject('modUser', array('username' => $hook->getValue($scriptProperties['usernameField'])));
+
 /** @var $invit Invit */
 $invit = $modx->getObject('Invit', array(
-    'hash' => $scriptProperties['invitHash'],
+    'hash' => $_REQUEST['referer'],
 ));
+if (!$invit || !$invit->isValid()) return false;
+
 $invit->set('guest_registered', 1);
 $invit->save();
 

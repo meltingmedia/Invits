@@ -5,7 +5,7 @@ Version: 1.0.0-beta1
 Author: Romain Tripault // Melting Media <romain@melting-media.com>
 --------------------------------------------------------------------------------
 
-A MODX Revolution component allowing your users to send registration
+A MODX Revolution component allowing you/your users to send registration
 invitations to other users.
 
 Requires Shaun McCormick's Login component and optionnally FormIt to send

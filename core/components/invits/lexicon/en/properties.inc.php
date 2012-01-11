@@ -29,4 +29,11 @@ $_lang['prop_invitsconfirmregister.finallanding_desc'] = 'The resource ID where 
 $_lang['prop_invitsconfirmregister.invitremove_desc'] = 'The resource ID where invitRemove snippet is called.';
 $_lang['prop_invitsregister.invitonly_desc'] = 'Whether to allow or not registration without invitation.';
 $_lang['prop_invitsregister.formtpl_desc'] = 'The chunk containing the registration form.';
+
+$_lang['prop_fi.postinvit.invitemailtpl_desc'] = 'Name of the chunk containing the email body';
+$_lang['prop_fi.postinvit.invitemailsubject_desc'] = 'The email subject the invitees will see';
+$_lang['prop_fi.postinvit.invitemailfrom_desc'] = 'Email address used to send the invitation';
+$_lang['prop_fi.postinvit.invitemailfromname_desc'] = 'Name displayed on the invitation email';
+$_lang['prop_fi.postinvit.invitemailhtml_desc'] = 'Whether or not send the email as HTML';
+
 //$_lang['prop_invits._desc'] = '';

@@ -52,6 +52,7 @@ $properties = array(
         'options' => '',
         'value' => '',
         'lexicon' => 'login:properties',
+        'area' => 'Login',
     ),
     array(
         'name' => 'usergroups',
@@ -78,6 +79,7 @@ $properties = array(
         'options' => '',
         'value' => 'username',
         'lexicon' => 'login:properties',
+        'area' => 'Login',
     ),
     array(
         'name' => 'passwordField',
@@ -167,6 +169,7 @@ $properties = array(
         'options' => '',
         'value' => '',
         'lexicon' => 'login:properties',
+        'area' => 'Login',
     ),
     array(
         'name' => 'useExtended',
@@ -184,6 +187,7 @@ $properties = array(
         'options' => '',
         'value' => '',
         'lexicon' => 'login:properties',
+        'area' => 'Login',
     ),
     array(
         'name' => 'activation',
@@ -201,6 +205,7 @@ $properties = array(
         'options' => '',
         'value' => '180',
         'lexicon' => 'login:properties',
+        'area' => 'Login',
     ),
     array(
         'name' => 'activationResourceId',
@@ -218,6 +223,7 @@ $properties = array(
         'options' => '',
         'value' => '',
         'lexicon' => 'login:properties',
+        'area' => 'Login',
     ),
     array(
         'name' => 'activationEmailSubject',

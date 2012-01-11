@@ -13,17 +13,18 @@
  */
 $Invits = $modx->getService('invits', 'Invits', $modx->getOption('invits.core_path', null, $modx->getOption('core_path').'components/invits/').'model/invits/', $scriptProperties);
 if (!($Invits instanceof Invits)) return '';
+$modx->lexicon->load('invits:web');
 $login = $modx->getObject('modNamespace', array('name' => 'login'));
-if (!$login) return 'You need to have Login component installed, please install it first.';
+if (!$login) return $modx->lexicon('invits.login_cmp_required');
 
-$invitOnly = $modx->getOption('invitOnly', $scriptProperties, true);
+$invitOnly = $modx->getOption('invitOnly', $scriptProperties, false);
 $formTpl = $modx->getOption('formTpl', $scriptProperties, 'registrationform');
 // Register default params
 $emailField = $modx->getOption('emailField', $scriptProperties, 'email');
 
-$invitHash = $_REQUEST['referer'];
+$invitHash = $_REQUEST['referer']; // @todo: make system settings/snippet parameter usage
 if (!$invitHash && $invitOnly) {
-    return 'no invitation code given';
+    return $modx->lexicon('invits.invit_only_no_code');
 }
 
 $invit = false;
@@ -37,24 +38,30 @@ if ($invitHash) {
 }
 
 if ($invitOnly && !$invit) {
-    return 'No invitation found (or already used)';
+    return $modx->lexicon('invits.invit_only_no_code_found');
 }
 
 // Loads the guest data set by the "inviter"
 $guestInfos = array();
-$persistParams = array(
-    'referer' => $invitHash,
-);
-
 if ($invit) {
+    $persistParams = array(
+        'referer' => $invitHash,
+    );
     //$scriptProperties['invitHash'] = $invitHash;
     $scriptProperties['persistParams'] = json_encode($persistParams);
     $guestInfos = array(
         $emailField => $invit->get('guest_email'),
         'fullname' => $invit->get('guest_name'),
     );
+
+    if ($scriptProperties['invitDisableActivation']) {
+        //$modx->log(modX::LOG_LEVEL_ERROR, 'activation disabled for invited users');
+        $scriptProperties['activation'] = '0';
+        //$scriptProperties['submittedResourceId'] = 37;
+    }
 }
 // @todo: unset invitsRegister params ? (like formTpl, invitOnly…)
+// Run original Register snippet, load & pre-fill the registration form
 $modx->runSnippet('Register', $scriptProperties);
 $form = $Invits->getChunk($formTpl, $guestInfos);
 
