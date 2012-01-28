@@ -34,5 +34,10 @@
             <input type="submit" name="submit" value="Send invit(s)" />
         </div>
     </form>
+
+    <hr />
+    <ul>
+[[!getInvits]]
+    </ul>
 </body>
 </html>
