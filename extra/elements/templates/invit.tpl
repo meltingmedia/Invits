@@ -8,14 +8,15 @@
 <hr />
 [[!FormIt?
     &hooks=`fi.postInvit`
+    &preHooks=`fi.preInvit`
     &_customValidators=`invitsValidator`
     &_validate=`invit-1:invitsValidator,invit-2:invitsValidator,test:invitsValidator`
     &validate=`invit-email:required:email`
 
     &invitEmailTpl=`invit-email-chunk`
     &invitEmailSubject=`Come on sweety!`
-    &invitEmailFrom=`moi@lola.com`;
-    &invitEmailFromName=`[[+modx.user.id:userinfo=`username`]]`
+    &_invitEmailFrom=`moi@lola.com`;
+    &_invitEmailFromName=`Biloute`
     &invitEmailHtml=`0`
 ]]
     <form action="[[~[[*id]]]]" method="post">

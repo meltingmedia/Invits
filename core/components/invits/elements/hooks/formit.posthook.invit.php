@@ -23,7 +23,7 @@ $invitEmailTpl = $modx->getOption('invitEmailTpl', $scriptProperties, 'invit-ema
 $invitEmailSubject = $modx->getOption('invitEmailSubject', $scriptProperties, $modx->lexicon('invits.invit_email_subject', array('site_name' => $modx->getOption('site_name'))));
 $invitEmailFrom = $modx->getOption('invitEmailFrom', $scriptProperties, $modx->getOption('emailsender'));
 $invitEmailFromName = $modx->getOption('invitEmailFromName', $scriptProperties, $modx->getOption('site_name'));
-$invitEmailHtml = $modx->getOption('invitEmailHtml', $scriptProperties, false); // @todo: check if multipart is supported
+$invitEmailHtml = $modx->getOption('invitEmailHtml', $scriptProperties, false);
 
 $invits = $hook->getValues();
 $params = array();
@@ -77,4 +77,9 @@ if (!$modx->mail->send()) {
 }
 $modx->mail->reset();
 
+$_SESSION['invit'] = array(
+    'to' => $to,
+    'name' => $invits[$prefix.'name'],
+);
+$modx->sendRedirect($modx->makeUrl($modx->resource->get('id'), '', array('success' => 1)));
 return true;
