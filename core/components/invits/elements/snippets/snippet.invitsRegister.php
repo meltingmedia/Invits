@@ -59,6 +59,7 @@ if ($invit) {
         $scriptProperties['activation'] = '0';
         //$scriptProperties['submittedResourceId'] = 37;
     }
+    $scriptProperties['activationEmailTpl'] = $scriptProperties['invitActivationEmailTpl'];
 }
 // @todo: unset invitsRegister params ? (like formTpl, invitOnly…)
 // Run original Register snippet, load & pre-fill the registration form
